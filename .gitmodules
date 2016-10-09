@@ -1,0 +1,3 @@
+[submodule "themes/landscape-plus"]
+	path = themes/landscape-plus
+	url = git@github.com:xiangming/landscape-plus.git
