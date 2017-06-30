@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Python打包发布一条龙 | 聘宝研发</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天介绍一下 Python 项目的打包及分发。">
+<meta name="keywords" content="python,setup.py,pypi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python打包发布一条龙">
+<meta property="og:url" content="http://blog.pinbot.me/2016/11/29/Python打包发布一条龙/index.html">
+<meta property="og:site_name" content="聘宝研发">
+<meta property="og:description" content="今天介绍一下 Python 项目的打包及分发。">
+<meta property="og:updated_time" content="2017-06-29T09:27:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python打包发布一条龙">
+<meta name="twitter:description" content="今天介绍一下 Python 项目的打包及分发。">
+  
+    <link rel="alternative" href="/atom.xml" title="聘宝研发" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">聘宝研发</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一群有追求的人</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="blog.pinbot.me">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Python打包发布一条龙" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/29/Python打包发布一条龙/" class="article-date">
+  <time datetime="2016-11-29T14:00:00.000Z" itemprop="datePublished">2016-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python打包发布一条龙
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天介绍一下 Python 项目的打包及分发。</p>
+<a id="more"></a>
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><h3 id="distutils"><a href="#distutils" class="headerlink" title="distutils"></a>distutils</h3><p><a href="https://docs.python.org/2/distutils/" target="_blank" rel="external">distutils</a> 是于2000年发布的 Python 项目创建打包工具。</p>
+<p>但现在很少直接使用, 而是使用 setuptools 。</p>
+<h3 id="setuptools"><a href="#setuptools" class="headerlink" title="setuptools"></a>setuptools</h3><p><a href="http://setuptools.readthedocs.io/en/latest/" target="_blank" rel="external">setuptools</a> 于2004年发布, 是 distutils 的增强版本, 包含 <code>setup</code> 和 <code>find_packages</code> 等常见函数。</p>
+<p>另外它包含了 easy_install 这个包安装工具, 使用Eggs包来进行安装(扩展名为 .egg ), 如果你不幸用 Windows 做过 Python 开发, 应该对它不陌生。</p>
+<p>另外现在在 macOS 的 Python 环境中也附带了这个工具。</p>
+<p>常见用法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ easy_install redisdict-0.0.1-py2.7.egg</div></pre></td></tr></table></figure>
+<p>Eggs文件实际是一个压缩包, 解压后目录结构大致如下, 具体可以参看 <a href="http://setuptools.readthedocs.io/en/latest/formats.html" target="_blank" rel="external">The Internal Structure of Python Eggs¶</a> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">├── EGG-INFO</div><div class="line">│   ├── PKG-INFO</div><div class="line">│   ├── SOURCES.txt</div><div class="line">│   ├── dependency_links.txt</div><div class="line">│   ├── requires.txt</div><div class="line">│   ├── top_level.txt</div><div class="line">│   └── zip-safe</div><div class="line">├── redisdict</div><div class="line">│   ├── __init__.py</div></pre></td></tr></table></figure>
+<p>说到 Eggs 就得谈谈 Wheel, <a href="https://www.python.org/dev/peps/pep-0427/" target="_blank" rel="external">Wheel</a> 是2012年发布的Python包格式, 类似于 Eggs , 其目录结构大致如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">├── redisdict</div><div class="line">│   └── __init__.py</div><div class="line">└── redisdict-0.0.1.dist-info</div><div class="line">    ├── DESCRIPTION.rst</div><div class="line">    ├── METADATA</div><div class="line">    ├── RECORD</div><div class="line">    ├── WHEEL</div><div class="line">    ├── metadata.json</div><div class="line">    └── top_level.txt</div></pre></td></tr></table></figure>
+<h3 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h3><p><a href="https://pip.pypa.io/en/stable/" target="_blank" rel="external">pip</a> 是 PyPA(Python Packaging Authority) 推荐、时下最主流的包安装工具, 发布于2013年, pip 支持从常见的VCS系统(例如git)进行安装, 也可以安装Eggs包, Wheel包。</p>
+<h2 id="使用-setuptools-打包"><a href="#使用-setuptools-打包" class="headerlink" title="使用 setuptools 打包"></a>使用 setuptools 打包</h2><p>我们以 RedisDict 这个模块为例, 首先在项目中新建 <code>setup.py</code> 文件, 并引入 <code>setuptools</code> 。<br>之后使用 <code>setuptools.setup</code> 方法对项目进行打包, 方法的参数设定可以参看 <a href="https://packaging.python.org/distributing/#setup-args" target="_blank" rel="external">setup-args</a> 。</p>
+<p>示例代码如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">import setuptools</div><div class="line">import codecs</div><div class="line"></div><div class="line"></div><div class="line">def get_requirements(filename):</div><div class="line">    return codecs.open(&apos;requirements/&apos; + filename, encoding=&apos;utf-8&apos;).read().splitlines()</div><div class="line"></div><div class="line"></div><div class="line">setuptools.setup(</div><div class="line">    name=&apos;redisdict&apos;,</div><div class="line">    version=&apos;0.0.1&apos;,</div><div class="line">    packages=setuptools.find_packages(exclude=[&apos;tests&apos;, &apos;tests.*&apos;]),</div><div class="line">    url=&apos;https://github.com/kxrr/redisdict&apos;,</div><div class="line">    license=&apos;MIT&apos;,</div><div class="line">    author=&apos;kxrr&apos;,</div><div class="line">    author_email=&apos;hi@kxrr.us&apos;,</div><div class="line">    description=&apos;A dict-like object using Redis as the backend.&apos;,</div><div class="line">    install_requires=get_requirements(&apos;default.txt&apos;),</div><div class="line">    tests_require=get_requirements(&apos;test.txt&apos;),</div><div class="line">)</div></pre></td></tr></table></figure>
+<p>之后, 我们可以使用下面命令将项目打包为压缩文件:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ python setup.py check  # 检查</div><div class="line">$ python setup.py sdist  # 打包为 .tar.gz </div><div class="line">$ python setup.py bdist_egg  #  创建 Eggs包</div><div class="line">$ python setup.py bdist_wheel  # 创建 Wheel包</div></pre></td></tr></table></figure>
+<p>生成的文件均位于 dist 目录下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">dist</div><div class="line">├── redisdict-0.0.1-py2-none-any.whl</div><div class="line">├── redisdict-0.0.1-py2.7.egg</div><div class="line">└── redisdict-0.0.1.tar.gz</div></pre></td></tr></table></figure>
+<p>别外也可以通过 setuptools 将项目打包成其它格式(比如exe), 有兴趣的可以自己看看。</p>
+<h2 id="分发"><a href="#分发" class="headerlink" title="分发"></a>分发</h2><h3 id="发布到自建-pypi-server"><a href="#发布到自建-PyPI-Server" class="headerlink" title="发布到自建 PyPI Server"></a>发布到自建 PyPI Server</h3><p>只需要通过 <code>scp</code> 命令将打好的包传到我们的 PyPI Server 上去:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ scp dist/redisdict-0.0.1-py2.py3-none-any.whl deploy@pypi.pinbot.me:/home/deploy/packages</div></pre></td></tr></table></figure>
+<p>上传完成后可以使用 pip 进行安装:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install redisdict -i http://pypi.pinbot.me/simple/ --trusted-host pypi.pinbot.me</div></pre></td></tr></table></figure>
+<h3 id="发布到官方-pypi-server"><a href="#发布到官方-PyPI-Server" class="headerlink" title="发布到官方 PyPI Server"></a>发布到官方 PyPI Server</h3><p>首先到 <a href="https://pypi.python.org/pypi?%3Aaction=register_form" target="_blank" rel="external">PyPI</a> 注册一个帐号, 在邮箱内确认。</p>
+<p>之后在家目录新建一个 <code>.pypirc</code> 文件, 写入下面内容(注意填入自己的帐号密码):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[pypirc]</div><div class="line">servers = pypi</div><div class="line">[server-login]</div><div class="line">username:username</div><div class="line">password:password</div></pre></td></tr></table></figure>
+<p>接下来就可以开始上传了:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ python setup.py register  # 将包注册到 PyPI</div><div class="line">$ python setup.py register sdist upload  # 上传</div></pre></td></tr></table></figure>
+<p>运行过后根据提示操作即可发布完成。</p>
+<hr>
+<p>Packaging User Guide: <a href="https://packaging.python.org/key_projects/" target="_blank" rel="external">https://packaging.python.org/key_projects/</a><br>Celery setup.py: <a href="https://github.com/celery/celery/blob/master/setup.py" target="_blank" rel="external">https://github.com/celery/celery/blob/master/setup.py</a><br>What was the problem with packaging?: <a href="http://pythonhosted.org/distlib/overview.html#what-was-the-problem-with-packaging" target="_blank" rel="external">http://pythonhosted.org/distlib/overview.html#what-was-the-problem-with-packaging</a><br>Uploading your project to pypi: <a href="https://packaging.python.org/distributing/#uploading-your-project-to-pypi" target="_blank" rel="external">https://packaging.python.org/distributing/#uploading-your-project-to-pypi</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://blog.pinbot.me/2016/11/29/Python打包发布一条龙/" data-id="cj4jfdrif000p8mwb9cgjtif8" class="article-share-link" data-share="baidu" data-title="Python打包发布一条龙">分享到</a>
+      
+
+      
+        <a href="http://blog.pinbot.me/2016/11/29/Python打包发布一条龙/#wy_thread" class="article-comment-link">评论</a>
+        <a class="cloud-tie-join-count" href="javascript:void(0);">
+  <span class="icon-comment"></span>
+  <span class="join-count">0</span>
+  <span class="join-text">人参与</span>
+</a>
+<!-- DOM元素 -->
+<!-- 根据站点情况，配置data-url或data-sourceId中的一个即可 -->
+<span
+  lang="join-count"
+  class="join-count"
+  data-url="http://blog.pinbot.me/2016/11/29/Python打包发布一条龙/"
+  data-sourceId=""
+>0</span>
+<!-- JavaScript 配置 -->
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "79401510bd4c47b2adc27dd65da90a2e";
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2xpc3Rfam9pbl9zY3JpcHQuaHRtbA==", true);
+</script>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pypi/">pypi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/setup-py/">setup.py</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/06/25/用Sphinx快速制作文档/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          用Sphinx快速制作文档
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/18/Django入门进阶/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Django入门进阶</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="wy_thread">
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <noscript>Please enable JavaScript</noscript>
+    </div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/UML/">UML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/招聘/">招聘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搜索引擎/">搜索引擎</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kxrr/">Kxrr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NotImplemented/">NotImplemented</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache-lucene/">apache lucene</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ascii/">ascii</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/image/">image</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pypi/">pypi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyspark/">pyspark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup-py/">setup.py</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sphinx/">sphinx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/str/">str</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unicode-literals/">unicode_literals</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开始/">开始</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/招聘/">招聘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验总结/">经验总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kxrr/" style="font-size: 10px;">Kxrr</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/NotImplemented/" style="font-size: 10px;">NotImplemented</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/apache-lucene/" style="font-size: 15px;">apache lucene</a> <a href="/tags/ascii/" style="font-size: 10px;">ascii</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/image/" style="font-size: 10px;">image</a> <a href="/tags/javascript/" style="font-size: 12.5px;">javascript</a> <a href="/tags/pypi/" style="font-size: 10px;">pypi</a> <a href="/tags/pyspark/" style="font-size: 10px;">pyspark</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/setup-py/" style="font-size: 10px;">setup.py</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/sphinx/" style="font-size: 10px;">sphinx</a> <a href="/tags/str/" style="font-size: 10px;">str</a> <a href="/tags/unicode-literals/" style="font-size: 10px;">unicode_literals</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/并发/" style="font-size: 10px;">并发</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/招聘/" style="font-size: 10px;">招聘</a> <a href="/tags/搜索引擎/" style="font-size: 15px;">搜索引擎</a> <a href="/tags/机器学习/" style="font-size: 15px;">机器学习</a> <a href="/tags/经验总结/" style="font-size: 10px;">经验总结</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/运维/" style="font-size: 17.5px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/用Sphinx快速制作文档/">用Sphinx快速制作文档</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/29/Python打包发布一条龙/">Python打包发布一条龙</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/18/Django入门进阶/">Django入门进阶</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/使用R并行方式对数值型数据离散化/">使用R并行方式对数值型数据离散化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/向量的相似性度量/">向量的相似性度量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="" target="_blank">聘宝产品</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 聘宝研发<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "79401510bd4c47b2adc27dd65da90a2e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Vue.js基础入门 | 聘宝研发</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作者: 李纯利 Vue.js是一套构建用户界面的渐进式框架,Vue的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合;Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js基础入门">
+<meta property="og:url" content="http://blog.pinbot.me/2016/11/09/Vue.js基础入门/index.html">
+<meta property="og:site_name" content="聘宝研发">
+<meta property="og:description" content="作者: 李纯利 Vue.js是一套构建用户界面的渐进式框架,Vue的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合;Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。">
+<meta property="og:updated_time" content="2017-06-29T09:27:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue.js基础入门">
+<meta name="twitter:description" content="作者: 李纯利 Vue.js是一套构建用户界面的渐进式框架,Vue的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合;Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。">
+  
+    <link rel="alternative" href="/atom.xml" title="聘宝研发" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">聘宝研发</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一群有追求的人</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="blog.pinbot.me">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Vue.js基础入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/09/Vue.js基础入门/" class="article-date">
+  <time datetime="2016-11-09T06:08:08.000Z" itemprop="datePublished">2016-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue.js基础入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作者: 李纯利</p>
+<p>Vue.js是一套构建用户界面的<code>渐进式框架</code>,Vue的核心库只关注视图层，并且非常容易学习，非常容易与其它库或已有项目整合;Vue.js 的目标是通过尽可能简单的 API 实现<code>响应的数据绑定和组合的视图组件</code>。<br><a id="more"></a></p>
+<p>一、模板语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">    <span class="comment">//数据绑定最常见的形式:&#123;&#123; &#125;&#125;的文本插入.</span></div><div class="line">    <span class="comment">//HTML</span></div><div class="line">    &lt;div id=<span class="string">'app'</span>&gt;</div><div class="line">        &lt;!-- 文本 --&gt;</div><div class="line">        &lt;!-- v-once指令只能执行一次性地插值 --&gt;</div><div class="line">        &lt;div v-once&gt;&#123;&#123;message | capitalize&#125;&#125;&lt;/div&gt;</div><div class="line">        &lt;!-- 纯HTML --&gt;</div><div class="line">        &lt;div v-html="htmlStr"&gt;&lt;/div&gt;</div><div class="line">        &lt;!-- 属性 --&gt;</div><div class="line">        &lt;div v-bind:class="vueJs"&gt;&lt;/div&gt;</div><div class="line">        &lt;!-- 使用JavaScript表达式 --&gt;</div><div class="line">        &lt;div v-bind:title="num + 1"&gt;&lt;/div&gt;</div><div class="line">        &lt;!-- 修饰符 --&gt;</div><div class="line">        &lt;form v-on:submit.prevent="onSubmit"&gt;&lt;/form&gt;</div><div class="line">        &lt;!-- 缩写 --&gt;</div><div class="line">        &lt;!-- 完整语法 --&gt;</div><div class="line">        &lt;div v-bind:class="vueJs"&gt;&lt;/div&gt;</div><div class="line">        &lt;div v-on:click="greet"&gt;&lt;/div&gt;</div><div class="line">        &lt;!-- 缩写 --&gt;</div><div class="line">        &lt;div :class="vueJs"&gt;&lt;/div&gt;</div><div class="line">        &lt;div @click="greet"&gt;&lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    <span class="comment">//js</span></div><div class="line">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">        <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">        <span class="attr">data</span>: &#123;</div><div class="line">            <span class="attr">message</span>: <span class="string">'Hello Vue'</span>,</div><div class="line">            <span class="attr">htmlStr</span>: <span class="string">'&lt;span&gt;HTML&lt;/span&gt;'</span>,</div><div class="line">            <span class="attr">vueJs</span>: <span class="string">'vue-div'</span>,</div><div class="line">            <span class="attr">num</span>: <span class="number">2</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">filters</span>: &#123;</div><div class="line">            <span class="attr">capitalize</span>: <span class="function"><span class="keyword">function</span> (<span class="params">value</span>) </span>&#123;</div><div class="line">              <span class="keyword">if</span> (!value) <span class="keyword">return</span> <span class="string">''</span></div><div class="line">              value = value.toString()</div><div class="line">              <span class="keyword">return</span> value..split(<span class="string">''</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        methods: &#123;</div><div class="line">            <span class="attr">onSubmit</span>:<span class="function"><span class="keyword">function</span>(<span class="params">event</span>)</span>&#123;</div><div class="line">                alert(<span class="string">'hello!'</span>)</div><div class="line">            &#125;,</div><div class="line">            <span class="attr">greet</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                alert(<span class="string">'缩写.'</span>)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<p><code>v-</code>前缀在模板中是作为一个标示 Vue 特殊属性的明显标识。<br>二.计算属性</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div id='app'&gt;</div><div class="line">    &lt;div&gt;&#123;&#123;message&#125;&#125;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">var app = new Vue(&#123;</div><div class="line">    el: '#app',</div><div class="line">    data: &#123;</div><div class="line">        message: 'HelloVue'</div><div class="line">    &#125;,</div><div class="line">    reverseMessage: &#123;</div><div class="line">        greet: function()&#123;</div><div class="line">            return this.message.split('').reverse().join('');</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>三.class与style绑定</p>
+<p>语法:<code>v-bind:class</code>, <code>v-bind:style</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"static"</span></div><div class="line"> v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123; active: isActive &#125;"</span>&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"[activeClass, errorClass]"</span>&gt;</div><div class="line">&lt;div v-bind:style="&#123; color: activeColor, fontSize: fontSize + 'px' &#125;"&gt;&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">    <span class="attr">data</span>: &#123;</div><div class="line">        <span class="attr">activeClass</span>: <span class="string">'active'</span>,</div><div class="line">        <span class="attr">errorClass</span>: <span class="string">'errors'</span>,</div><div class="line">        <span class="attr">activeColor</span>: <span class="string">'red'</span>,</div><div class="line">        <span class="attr">fontSize</span>: <span class="number">30</span></div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>这里也可以绑定返回对象的计算属性。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div v-bind:<span class="class"><span class="keyword">class</span></span>=<span class="string">"classObject"</span>&gt;&lt;/div&gt;</div><div class="line"></div><div class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</div><div class="line">    <span class="attr">el</span>: <span class="string">'#app'</span>,</div><div class="line">    <span class="attr">data</span>: &#123;</div><div class="line">        <span class="attr">classObject</span>: &#123;</div><div class="line">            <span class="attr">active</span>: <span class="literal">true</span>,</div><div class="line">            <span class="string">'text-danger'</span>: <span class="literal">false</span></div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>四.条件渲染<br>语法:v-show,v-if,v-else<br>v-else必须紧跟在v-if,v-show后面,不然就不能被识别.<br>v-if与v-show的区别v-show始终保持在Dom中,用简单的display来切换的.<br>v-if有更高的切换消耗,如果频繁的切换还是使用v-show比较好.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;h1 v-if="ok"&gt;Yes&lt;/h1&gt;</div><div class="line">&lt;h1 v-else&gt;No&lt;/h1&gt;</div><div class="line">&lt;h1 v-show="ok"&gt;Yes&lt;/h1&gt;</div><div class="line">&lt;template v-if="ok"&gt;</div><div class="line">  &lt;h1&gt;1&lt;/h1&gt;</div><div class="line">&lt;/template&gt;</div></pre></td></tr></table></figure>
+<p>注意 v-show 不支持 <code>&lt;template&gt;</code> 语法.<br>五.列表渲染<br>语法: v-for<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">"item of items"</span>&gt;&lt;/div&gt;</div><div class="line">&lt;div v-<span class="keyword">for</span>=<span class="string">"item in items"</span>&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>如同 v-if 模板，你也可以用带有 v-for 的 <code>&lt;template&gt;</code> 标签来渲染多个元素块.<br>在自定义组件里，你可以像任何普通元素一样用 v-for.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;my-component v-<span class="keyword">for</span>=<span class="string">"item in items"</span>&gt;&lt;/my-component&gt;</div></pre></td></tr></table></figure></p>
+<p>六.事件处理器<br>语法:v-on:事件</p>
+<p>事件修饰符:<br>.submit提交事件不再重载页面<br>.stop阻止单击事件冒泡<br>.prevent修饰符可以串联<br>.capture添加事件侦听器时使用事件捕获模式<br>.self只当事件在该元素本身（而不是子元素）触发时触发回调</p>
+<p>按键修饰符:<br>全部的按键别名：<br>.enter,.tab,.delete (捕获 “删除” 和 “退格” 键),.esc,.space,.up,.down,.left,.right.</p>
+<p>可以通过全局 config.keyCodes 对象自定义按键修饰符别名：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 可以使用 v-on:keyup.f</span></div><div class="line">Vue.config.keyCodes.f = <span class="number">113</span></div></pre></td></tr></table></figure></p>
+<p>七.表单控件绑定<br>v-model 指令在表单控件元素上创建双向数据绑定.</p>
+<p>修饰符:<br>.lazy在默认情况下， v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步.<br>.number只能输入number类型的值.<br>.trim去掉首尾空格</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://blog.pinbot.me/2016/11/09/Vue.js基础入门/" data-id="cj4jfdril000t8mwbxi3pq9o5" class="article-share-link" data-share="baidu" data-title="Vue.js基础入门">分享到</a>
+      
+
+      
+        <a href="http://blog.pinbot.me/2016/11/09/Vue.js基础入门/#wy_thread" class="article-comment-link">评论</a>
+        <a class="cloud-tie-join-count" href="javascript:void(0);">
+  <span class="icon-comment"></span>
+  <span class="join-count">0</span>
+  <span class="join-text">人参与</span>
+</a>
+<!-- DOM元素 -->
+<!-- 根据站点情况，配置data-url或data-sourceId中的一个即可 -->
+<span
+  lang="join-count"
+  class="join-count"
+  data-url="http://blog.pinbot.me/2016/11/09/Vue.js基础入门/"
+  data-sourceId=""
+>0</span>
+<!-- JavaScript 配置 -->
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "79401510bd4c47b2adc27dd65da90a2e";
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2xpc3Rfam9pbl9zY3JpcHQuaHRtbA==", true);
+</script>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Vue-js/">Vue.js</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/09/mysql性能优化/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          MySQL性能优化
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/07/使用python实现图片转字符画/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">使用python实现图片转字符画</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="wy_thread">
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <noscript>Please enable JavaScript</noscript>
+    </div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/UML/">UML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/招聘/">招聘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搜索引擎/">搜索引擎</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kxrr/">Kxrr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NotImplemented/">NotImplemented</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache-lucene/">apache lucene</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ascii/">ascii</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/image/">image</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pypi/">pypi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyspark/">pyspark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup-py/">setup.py</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sphinx/">sphinx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/str/">str</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unicode-literals/">unicode_literals</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开始/">开始</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/招聘/">招聘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验总结/">经验总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kxrr/" style="font-size: 10px;">Kxrr</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/NotImplemented/" style="font-size: 10px;">NotImplemented</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/apache-lucene/" style="font-size: 15px;">apache lucene</a> <a href="/tags/ascii/" style="font-size: 10px;">ascii</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/image/" style="font-size: 10px;">image</a> <a href="/tags/javascript/" style="font-size: 12.5px;">javascript</a> <a href="/tags/pypi/" style="font-size: 10px;">pypi</a> <a href="/tags/pyspark/" style="font-size: 10px;">pyspark</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/setup-py/" style="font-size: 10px;">setup.py</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/sphinx/" style="font-size: 10px;">sphinx</a> <a href="/tags/str/" style="font-size: 10px;">str</a> <a href="/tags/unicode-literals/" style="font-size: 10px;">unicode_literals</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/并发/" style="font-size: 10px;">并发</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/招聘/" style="font-size: 10px;">招聘</a> <a href="/tags/搜索引擎/" style="font-size: 15px;">搜索引擎</a> <a href="/tags/机器学习/" style="font-size: 15px;">机器学习</a> <a href="/tags/经验总结/" style="font-size: 10px;">经验总结</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/运维/" style="font-size: 17.5px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/用Sphinx快速制作文档/">用Sphinx快速制作文档</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/29/Python打包发布一条龙/">Python打包发布一条龙</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/18/Django入门进阶/">Django入门进阶</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/使用R并行方式对数值型数据离散化/">使用R并行方式对数值型数据离散化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/向量的相似性度量/">向量的相似性度量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="" target="_blank">聘宝产品</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 聘宝研发<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "79401510bd4c47b2adc27dd65da90a2e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

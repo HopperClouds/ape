@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Django入门进阶 | 聘宝研发</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作者：Adam at 2016-11-18 00:58:51 我们前面讲了快速熟悉Django架构网站的方式，接下来我们来深入了解一下Django框架。它不仅提供了建站的方法，也提供了一整套的从开发简单的网站到一个完整维护迭代的开发模式，下面几个方面非常重要。">
+<meta name="keywords" content="Django,Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django入门进阶">
+<meta property="og:url" content="http://blog.pinbot.me/2016/11/18/Django入门进阶/index.html">
+<meta property="og:site_name" content="聘宝研发">
+<meta property="og:description" content="作者：Adam at 2016-11-18 00:58:51 我们前面讲了快速熟悉Django架构网站的方式，接下来我们来深入了解一下Django框架。它不仅提供了建站的方法，也提供了一整套的从开发简单的网站到一个完整维护迭代的开发模式，下面几个方面非常重要。">
+<meta property="og:image" content="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480436514924.png">
+<meta property="og:image" content="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480436951111.png">
+<meta property="og:image" content="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480437014840.png">
+<meta property="og:updated_time" content="2017-06-29T09:27:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django入门进阶">
+<meta name="twitter:description" content="作者：Adam at 2016-11-18 00:58:51 我们前面讲了快速熟悉Django架构网站的方式，接下来我们来深入了解一下Django框架。它不仅提供了建站的方法，也提供了一整套的从开发简单的网站到一个完整维护迭代的开发模式，下面几个方面非常重要。">
+<meta name="twitter:image" content="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480436514924.png">
+  
+    <link rel="alternative" href="/atom.xml" title="聘宝研发" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">聘宝研发</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一群有追求的人</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="blog.pinbot.me">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-Django入门进阶" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/18/Django入门进阶/" class="article-date">
+  <time datetime="2016-11-17T16:58:51.000Z" itemprop="datePublished">2016-11-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/blog/">blog</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Django入门进阶
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作者：Adam at 2016-11-18 00:58:51</p>
+<p>我们前面讲了快速熟悉<code>Django</code><a href="http://hopperclouds.github.io/2016/10/29/Django%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" target="_blank" rel="external"><code>架构网站的方式</code></a>，接下来我们来深入了解一下<code>Django框架</code>。它不仅提供了建站的方法，也提供了一整套的从开发简单的网站到一个完整维护迭代的开发模式，下面几个方面非常重要。</p>
+<a id="more"></a>
+<h2 id="学会调试"><a href="#学会调试" class="headerlink" title="学会调试"></a>学会调试</h2><ul>
+<li><p>单步调试<br>直接在代码中插入下面这一行：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#polls/views.py</span></div><div class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> get_object_or_404, render</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</div><div class="line"><span class="keyword">import</span> pdb; pdb.set_trace() <span class="comment">#这一行</span></div></pre></td></tr></table></figure>
+<p>运行程序，就可以在服务器端命令行中一步步的跟踪执行结果。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">[26/Nov/2016 14:17:49] "GET /polls/ HTTP/1.1" 200 72</div><div class="line">Performing system checks...</div><div class="line">&gt; /myFirstDjango/mysite/polls/views.py(6)&lt;module&gt;()</div><div class="line">-&gt; def index(request):</div><div class="line">(Pdb) l ＃这是调试命令：展示当前运行代码</div><div class="line">  1  	from django.shortcuts import get_object_or_404, render</div><div class="line">  2</div><div class="line">  3  	from .models import Question</div><div class="line">  4  	import pdb; pdb.set_trace()</div><div class="line">  5  	# Create your views here.</div><div class="line">  6  -&gt;	def index(request):</div><div class="line">  7  	    latest_question_list = Question.objects.order_by('-pub_date')[:5]</div><div class="line">  8  	    context = &#123;</div><div class="line">  9  	        'latest_question_list': latest_question_list,</div><div class="line"> 10  	    &#125;</div><div class="line"> 11  	    return render(request, 'polls/index.html', context)</div><div class="line">(Pdb) n ＃这是调试命令: 下一步</div><div class="line">&gt; /Users/gzadamlv/myFirstDjango/mysite/polls/views.py(13)&lt;module&gt;()</div><div class="line">-&gt; def detail(request, question_id):</div><div class="line">(Pdb) h ＃这是调试命令：获取帮助，查看所有可用命令</div><div class="line">Documented commands (type help &lt;topic&gt;):</div><div class="line">========================================</div><div class="line">EOF    bt         cont      enable  jump  pp       run      unt</div><div class="line">a      c          continue  exit    l     q        s        until</div><div class="line">alias  cl         d         h       list  quit     step     up</div><div class="line">args   clear      debug     help    n     r        tbreak   w</div><div class="line">b      commands   disable   ignore  next  restart  u        whatis</div><div class="line">break  condition  down      j       p     return   unalias  where</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>Shell 调试方式<br>用下面的命令进入命令行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(myFirstDjango)➜  mysite git:(master) ✗ python manage.py shell</div><div class="line">Python 2.7.10 (default, Oct 23 2015, 19:19:21)</div><div class="line">[GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.0.59.5)] on darwin</div><div class="line">Type <span class="string">"help"</span>, <span class="string">"copyright"</span>, <span class="string">"credits"</span> or <span class="string">"license"</span> <span class="keyword">for</span> more information.</div><div class="line">(InteractiveConsole)</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>通过在命令行引入程序中使用的模块、函数来跟踪返回结果。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; django.setup()</div><div class="line">&gt;&gt;&gt; import mysite</div><div class="line">&gt;&gt;&gt; from django.shortcuts import get_object_or_404, render</div><div class="line">&gt;&gt;&gt; from polls.models import Question</div><div class="line">&gt;&gt;&gt; latest_question_list = Question.objects.order_by(<span class="string">'-pub_date'</span>)[:5]</div><div class="line">&gt;&gt;&gt; <span class="built_in">print</span>(latest_question_list)</div><div class="line">&lt;QuerySet [&lt;Question: 你会学习python吗？&gt;]&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="学会测试"><a href="#学会测试" class="headerlink" title="学会测试"></a>学会测试</h2><p>修改models.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</div><div class="line"><span class="keyword">import</span> datetime</div></pre></td></tr></table></figure></p>
+<p>给class Question增加一个方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">was_published_recently</span><span class="params">(self)</span>:</span></div><div class="line">    <span class="keyword">return</span> self.pub_date &gt;= timezone.now() - datetime.timedelta(days=<span class="number">1</span>)</div></pre></td></tr></table></figure></p>
+<p>添加测试文件：polls/tests.py<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> datetime</div><div class="line"><span class="keyword">from</span> django.utils <span class="keyword">import</span> timezone</div><div class="line"><span class="keyword">from</span> django.test <span class="keyword">import</span> TestCase</div><div class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Question</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuestionMethodTests</span><span class="params">(TestCase)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test_was_published_recently_with_future_question</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="string">"""</span></div><div class="line">        was_published_recently() should return False for questions</div><div class="line">        whose pub_date is in the future.</div><div class="line">        """</div><div class="line">        time = timezone.now() + datetime.timedelta(days=<span class="number">30</span>)</div><div class="line">        future_question = Question(pub_date=time)</div><div class="line">        self.assertIs(future_question.was_published_recently(), <span class="keyword">False</span>)</div></pre></td></tr></table></figure></p>
+<p>运行测试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">(myFirstDjango)➜  mysite git:(master) ✗ python manage.py <span class="built_in">test</span> polls</div><div class="line">Creating <span class="built_in">test</span> database <span class="keyword">for</span> <span class="built_in">alias</span> <span class="string">'default'</span>...</div><div class="line">F</div><div class="line">======================================================================</div><div class="line">FAIL: test_was_published_recently_with_future_question (polls.tests.QuestionMethodTests)</div><div class="line">----------------------------------------------------------------------</div><div class="line">Traceback (most recent call last):</div><div class="line">  File <span class="string">"/Users/gzadamlv/myFirstDjango/mysite/polls/tests.py"</span>, line 14, <span class="keyword">in</span> test_was_published_recently_with_future_question</div><div class="line">    self.assertIs(future_question.was_published_recently(), False)</div><div class="line">AssertionError: True is not False</div><div class="line"></div><div class="line">----------------------------------------------------------------------</div><div class="line">Ran 1 <span class="built_in">test</span> <span class="keyword">in</span> 0.002s</div><div class="line"></div><div class="line">FAILED (failures=1)</div><div class="line">Destroying <span class="built_in">test</span> database <span class="keyword">for</span> <span class="built_in">alias</span> <span class="string">'default'</span>...</div></pre></td></tr></table></figure></p>
+<p>修改was_published_recently方法<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#return self.pub_date &gt;= timezone.now() - datetime.timedelta(days=1)</span></div><div class="line">now = timezone.now()</div><div class="line"><span class="keyword">return</span> now - datetime.timedelta(days=<span class="number">1</span>) &lt;= self.pub_date &lt;= now</div></pre></td></tr></table></figure></p>
+<p>再运行测试<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(myFirstDjango)➜  mysite git:(master) ✗ python manage.py test polls</div><div class="line">Creating test database <span class="keyword">for</span> alias <span class="string">'default'</span>...</div><div class="line">.</div><div class="line">----------------------------------------------------------------------</div><div class="line">Ran <span class="number">1</span> test <span class="keyword">in</span> <span class="number">0.001</span>s</div><div class="line"></div><div class="line">OK</div><div class="line">Destroying test database <span class="keyword">for</span> alias <span class="string">'default'</span>...</div></pre></td></tr></table></figure></p>
+<h2 id="学会写文档"><a href="#学会写文档" class="headerlink" title="学会写文档"></a>学会写文档</h2><blockquote>
+<p>安装： <code>pip install Sphinx</code><br>运行 <code>sphinx-quickstart</code> 命令(下面几项要选<code>yes</code>)</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Please indicate <span class="keyword">if</span> you want to use one of the following Sphinx extensions:</div><div class="line">&gt; autodoc: automatically insert docstrings from modules (y/n) [n]: y</div><div class="line">&gt; doctest: automatically <span class="built_in">test</span> code snippets <span class="keyword">in</span> doctest blocks (y/n) [n]: y</div><div class="line">&gt; intersphinx: link between Sphinx documentation of different projects (y/n) [n]: y</div><div class="line">&gt; todo: write <span class="string">"todo"</span> entries that can be shown or hidden on build (y/n) [n]: y</div><div class="line">&gt; coverage: checks <span class="keyword">for</span> documentation coverage (y/n) [n]: y</div></pre></td></tr></table></figure>
+<blockquote>
+<p>生成文档： <code>make html</code><br>打开网页：<code>_build/html/index.html</code></p>
+</blockquote>
+<p>默认模版不太好看，我们新加一个主题：<code>pip install sphinx_rtd_theme</code><br>在<code>conf.py</code>最后增加：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> sphinx_rtd_theme</div><div class="line">html_theme = <span class="string">'sphinx_rtd_theme'</span></div></pre></td></tr></table></figure></p>
+<p>再<code>make html</code>，初始化文档生成成功：<br><img src="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480436514924.png" alt="2016-11-30-截图" title="blob_1480436514924.png"></p>
+<p>但是我们会发现并没有看到程序中的文档，别着急，还差两步。</p>
+<p>先用<code>sphinx-apidoc</code>把<code>app</code>目录中<code>python</code>程序的文档内容提取出来，保存到<code>api</code>这个目录。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sphinx-apidoc -o api ./app -f</div></pre></td></tr></table></figure></p>
+<p>最后，我们需要编辑index.rst这个文件：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Contents:</div><div class="line"></div><div class="line">.. toctree::</div><div class="line">   :maxdepth: <span class="number">2</span></div><div class="line"></div><div class="line">   api/polls.rst  <span class="comment">#增加这行</span></div></pre></td></tr></table></figure></p>
+<p>再次<code>make html</code>，大功告成～</p>
+<p><img src="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480436951111.png" alt="2016-11-30-截图" title="blob_1480436951111.png"></p>
+<p>这是提取出来的具体文档：</p>
+<p><img src="http://img.pinbot.me:8080/uploads/2016/11/30/blob_1480437014840.png" alt="2016-11-30-截图" title="blob_1480437014840.png"></p>
+<p>另外：如果<code>make html</code>出现下面错误<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sphinx autodoc ImportError: No module named</div></pre></td></tr></table></figure></p>
+<p>可以试试这个：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PYTHONPATH=$(pwd)</div></pre></td></tr></table></figure></p>
+<p>别小看上面这三步，其实还有很多细节没能和大家演示，师傅领进门，修行靠个人哦～</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://blog.pinbot.me/2016/11/18/Django入门进阶/" data-id="cj4jfdrgo00018mwb52vqaiii" class="article-share-link" data-share="baidu" data-title="Django入门进阶">分享到</a>
+      
+
+      
+        <a href="http://blog.pinbot.me/2016/11/18/Django入门进阶/#wy_thread" class="article-comment-link">评论</a>
+        <a class="cloud-tie-join-count" href="javascript:void(0);">
+  <span class="icon-comment"></span>
+  <span class="join-count">0</span>
+  <span class="join-text">人参与</span>
+</a>
+<!-- DOM元素 -->
+<!-- 根据站点情况，配置data-url或data-sourceId中的一个即可 -->
+<span
+  lang="join-count"
+  class="join-count"
+  data-url="http://blog.pinbot.me/2016/11/18/Django入门进阶/"
+  data-sourceId=""
+>0</span>
+<!-- JavaScript 配置 -->
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "79401510bd4c47b2adc27dd65da90a2e";
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2xpc3Rfam9pbl9zY3JpcHQuaHRtbA==", true);
+</script>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/29/Python打包发布一条龙/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          Python打包发布一条龙
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/09/使用R并行方式对数值型数据离散化/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">使用R并行方式对数值型数据离散化</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="wy_thread">
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <noscript>Please enable JavaScript</noscript>
+    </div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/UML/">UML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/招聘/">招聘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搜索引擎/">搜索引擎</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kxrr/">Kxrr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NotImplemented/">NotImplemented</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache-lucene/">apache lucene</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ascii/">ascii</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/image/">image</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pypi/">pypi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyspark/">pyspark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup-py/">setup.py</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sphinx/">sphinx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/str/">str</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unicode-literals/">unicode_literals</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开始/">开始</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/招聘/">招聘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验总结/">经验总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kxrr/" style="font-size: 10px;">Kxrr</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/NotImplemented/" style="font-size: 10px;">NotImplemented</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/apache-lucene/" style="font-size: 15px;">apache lucene</a> <a href="/tags/ascii/" style="font-size: 10px;">ascii</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/image/" style="font-size: 10px;">image</a> <a href="/tags/javascript/" style="font-size: 12.5px;">javascript</a> <a href="/tags/pypi/" style="font-size: 10px;">pypi</a> <a href="/tags/pyspark/" style="font-size: 10px;">pyspark</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/setup-py/" style="font-size: 10px;">setup.py</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/sphinx/" style="font-size: 10px;">sphinx</a> <a href="/tags/str/" style="font-size: 10px;">str</a> <a href="/tags/unicode-literals/" style="font-size: 10px;">unicode_literals</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/并发/" style="font-size: 10px;">并发</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/招聘/" style="font-size: 10px;">招聘</a> <a href="/tags/搜索引擎/" style="font-size: 15px;">搜索引擎</a> <a href="/tags/机器学习/" style="font-size: 15px;">机器学习</a> <a href="/tags/经验总结/" style="font-size: 10px;">经验总结</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/运维/" style="font-size: 17.5px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/用Sphinx快速制作文档/">用Sphinx快速制作文档</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/29/Python打包发布一条龙/">Python打包发布一条龙</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/18/Django入门进阶/">Django入门进阶</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/使用R并行方式对数值型数据离散化/">使用R并行方式对数值型数据离散化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/向量的相似性度量/">向量的相似性度量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="" target="_blank">聘宝产品</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 聘宝研发<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "79401510bd4c47b2adc27dd65da90a2e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>MySQL性能优化 | 聘宝研发</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="作者：liudong at 2016-11-09 15:48:37 ##1、为查询优化你的查询大多数的MySQL服务器都开启了查询缓存。这是提高性最有效的方法之一，而且这是被MySQL的数据库引擎处理的。当有很多相同的查询被执行了多次的时候，这些查询结果会被放到一个缓存中，这样，后续的相同的查询就不用操作表而直接访问缓存结果了。 123456// 查询缓存不开启$r = mysql_query(&amp;">
+<meta name="keywords" content="运维">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL性能优化">
+<meta property="og:url" content="http://blog.pinbot.me/2016/11/09/mysql性能优化/index.html">
+<meta property="og:site_name" content="聘宝研发">
+<meta property="og:description" content="作者：liudong at 2016-11-09 15:48:37 ##1、为查询优化你的查询大多数的MySQL服务器都开启了查询缓存。这是提高性最有效的方法之一，而且这是被MySQL的数据库引擎处理的。当有很多相同的查询被执行了多次的时候，这些查询结果会被放到一个缓存中，这样，后续的相同的查询就不用操作表而直接访问缓存结果了。 123456// 查询缓存不开启$r = mysql_query(&amp;">
+<meta property="og:updated_time" content="2017-06-30T02:43:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL性能优化">
+<meta name="twitter:description" content="作者：liudong at 2016-11-09 15:48:37 ##1、为查询优化你的查询大多数的MySQL服务器都开启了查询缓存。这是提高性最有效的方法之一，而且这是被MySQL的数据库引擎处理的。当有很多相同的查询被执行了多次的时候，这些查询结果会被放到一个缓存中，这样，后续的相同的查询就不用操作表而直接访问缓存结果了。 123456// 查询缓存不开启$r = mysql_query(&amp;">
+  
+    <link rel="alternative" href="/atom.xml" title="聘宝研发" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="//cdn.bootcss.com/font-awesome/4.1.0/css/font-awesome.min.css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+</head>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+  <div id="wrap">
+    <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">聘宝研发</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">一群有追求的人</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="http://www.baidu.com/baidu" method="get" accept-charset="utf-8" class="search-form">
+          <input type="search" name="word" maxlength="20" class="search-form-input" placeholder="Search">
+          <input type="submit" value="" class="search-form-submit">
+          <input name=tn type=hidden value="bds">
+          <input name=cl type=hidden value="3">
+          <input name=ct type=hidden value="2097152">
+          <input type="hidden" name="si" value="blog.pinbot.me">
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="outer">
+      <section id="main"><article id="post-mysql性能优化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/09/mysql性能优化/" class="article-date">
+  <time datetime="2016-11-09T07:48:37.000Z" itemprop="datePublished">2016-11-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL性能优化
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>作者：liudong at 2016-11-09 15:48:37</p>
+<p>##1、为查询优化你的查询<br>大多数的MySQL服务器都开启了查询缓存。这是提高性最有效的方法之一，而且这是被MySQL的数据库引擎处理的。当有很多相同的查询被执行了多次的时候，这些查询结果会被放到一个缓存中，这样，后续的相同的查询就不用操作表而直接访问缓存结果了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 查询缓存不开启</div><div class="line">$r = mysql_query(&quot;SELECT username FROM user WHERE     signup_date &gt;= CURDATE()&quot;);</div><div class="line"></div><div class="line">// 开启查询缓存</div><div class="line">$today = date(&quot;Y-m-d&quot;);</div><div class="line">$r = mysql_query(&quot;SELECT username FROM user WHERE signup_date &gt;= &apos;$today&apos;&quot;);</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>区别： CURDATE() ，MySQL的查询缓存对这个函数不起作用。所以，像 NOW() 和 RAND() 或是其它的诸如此类的SQL函数都不会开启查询缓存，因为这些函数的返回是会不定的易变的。所以，你所需要的就是用一个变量来代替MySQL的函数，从而开启缓存。</p>
+<p>##2、EXPLAIN 你的SELECT查询<br>使用EXPLAIN关键字可以让你知道MySQL是如何处理你的SQL语句的。</p>
+<p>有表关联的查询，如下列：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">select username, group_name</div><div class="line">from users u</div><div class="line">joins groups g on (u.group_id = g.id)</div></pre></td></tr></table></figure></p>
+<p>发现查询缓慢，然后在group_id字段上增加索引，则会加快查询</p>
+<p>##3、当只要一行数据时使用LIMIT 1<br>当你查询表的有些时候，你已经知道结果只会有一条结果，单因为你可能需要去fetch游标，或是你也许会去检查返回的记录数。<br>在这种情况下，加上LIMIT 1 可以增加性能。这样一样， MySQL数据库引擎会在找到一条数据后停止搜索，而不是继续往后查找下一条符合记录的数据。<br>下面的示例，只是为了找一下是否有“成都”的用户，很明显，后面的会比前面的更有效率。（请注意，第一条中是Select *，第二条是Select 1）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 没有效率的：</div><div class="line">$r = mysql_query(&quot;SELECT * FROM user WHERE country = &apos;China&apos;&quot;);</div><div class="line">if (mysql_num_rows($r) &gt; 0) &#123;</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 有效率的：</div><div class="line">$r = mysql_query(&quot;SELECT 1 FROM user WHERE country = &apos;China&apos; LIMIT 1&quot;);</div><div class="line">if (mysql_num_rows($r) &gt; 0) &#123;</div><div class="line">// ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##4、为搜索字段建索引<br>索引并不一定就是给主键或是唯一的字段。如果在你的表中，有某个字段你总要会经常用来做搜索，那么，请为其建立索引吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">添加PRIMARY KEY（主键索引）</div><div class="line">mysql&gt;ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )</div><div class="line"></div><div class="line">添加UNIQUE(唯一索引)</div><div class="line">mysql&gt;ALTER TABLE `table_name` ADD UNIQUE (</div><div class="line">`column`</div><div class="line">)</div><div class="line"></div><div class="line">添加INDEX(普通索引)</div><div class="line">mysql&gt;ALTER TABLE `table_name` ADD INDEX index_name ( `column` )</div><div class="line"></div><div class="line"></div><div class="line">添加FULLTEXT(全文索引)</div><div class="line">mysql&gt;ALTER TABLE `table_name` ADD FULLTEXT (</div><div class="line">`column`</div><div class="line">)</div><div class="line"></div><div class="line">添加多列索引</div><div class="line">mysql&gt;ALTER TABLE `table_name` ADD INDEX index_name ( `column1`, `column2`, `column3` )</div></pre></td></tr></table></figure></p>
+<p>##5、在Join表的时候使用相当类型的列，并将其索引<br>如果你的应用程序有很多JOIN查询，你应该确认两个表中Join的字段是被建过索引的。这样，MySQL内部会启动为你优化Join的SQL语句的机制。<br>而且，这些被用来Join的字段，应该是相同的类型的。例如：如果你要把DECIMAL字段和一个INT字段JOIN在一起，MYSQL就无法使用他们的索引。对于那些STRING类型，还需要有相同的字符集才行（两个表的字符集有可能不一样）</p>
+<p>##6、千万不要ORDER BY RAND()</p>
+<p>##7、避免SELECT *<br>从数据库里读出越多的数据，那么查询就会变得越慢。并且，如果你的数据库服务器和WEB服务器是两台独立的服务器的话，这还会增加网络传输的负载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 不推荐</div><div class="line">$r = mysql_query(&quot;SELECT * FROM user WHERE user_id = 1&quot;);</div><div class="line">$d = mysql_fetch_assoc($r);</div><div class="line">echo &quot;Welcome &#123;$d[&apos;username&apos;]&#125;&quot;;</div><div class="line"></div><div class="line">// 推荐</div><div class="line">$r = mysql_query(&quot;SELECT username FROM user WHERE user_id = 1&quot;);</div><div class="line">$d = mysql_fetch_assoc($r);</div><div class="line">echo &quot;Welcome &#123;$d[&apos;username&apos;]&#125;&quot;;</div></pre></td></tr></table></figure></p>
+<p>##8、永远为两张表设置一个ID<br>为数据库里的每张表都设置一个ID作为其主键，而最好的是一个INT型（推荐使用UNSIGNED），并设置上自动增长的AUTO INCREMENT标志。<br>就算是你 users 表有一个主键叫 “email”的字段，你也别让它成为主键。使用 VARCHAR 类型来当主键会使用得性能下降。另外，在你的程序中，你应该使用表的ID来构造你的数据结构。<br>而且，在MySQL数据引擎下，还有一些操作需要使用主键，在这些情况下，主键的性能和设置变得非常重要，比如，集群，分区</p>
+<p>##9、使用 ENUM 而不是 VARCHAR ？<br>ENUM 类型是非常快和紧凑的。在实际上，其保存的是 TINYINT，但其外表上显示为字符串。这样一来，用这个字段来做一些选项列表变得相当的完美。</p>
+<p>如果你有一个字段，比如“性别”，“国家”，“民族”，“状态”或“部门”，你知道这些字段的取值是有限而且固定的，那么，你应该使用 ENUM 而不是 VARCHAR。</p>
+<p>##10、从 PROCEDURE ANALYSE() 取得建议 ？<br>PROCEDURE ANALYSE() 会让 MySQL 帮你去分析你的字段和其实际的数据，并会给你一些有用的建议。只有表中有实际的数据，这些建议才会变得有用，因为要做一些大的决定是需要有数据作为基础的。</p>
+<p>例如，如果你创建了一个 INT 字段作为你的主键，然而并没有太多的数据，那么，PROCEDURE ANALYSE()会建议你把这个字段的类型改成 MEDIUMINT 。或是你使用了一个 VARCHAR 字段，因为数据不多，你可能会得到一个让你把它改成 ENUM 的建议。这些建议，都是可能因为数据不够多，所以决策做得就不够准。</p>
+<p>##11、尽可能的使用 NOT NULL<br>摘自MySQL官方文档<br>“NULL columns require additional space in the row to record whether their values are NULL. For MyISAM tables, each NULL column takes one bit extra, rounded up to the nearest byte.”</p>
+<p>##12、把IP地址存成 UNSIGNED INT<br>很多使用者都会创建一个 VARCHAR(15) 字段来存放字符串形式的IP而不是整形的IP。如果你用整形来存放，只需要4个字节，并且你可以有定长的字段。而且，这会为你带来查询上的优势，尤其是当你需要使用这样的WHERE条件：IP between ip1 and ip2。</p>
+<p>##13、拆分大的 DELETE 或 INSERT 语句<br>如果有一个大的处理，你定你一定把其拆分，使用 LIMIT 条件是一个好的方法。<br>下面是一个示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">while (1) &#123;</div><div class="line">//每次只做1000条</div><div class="line">mysql_query(&quot;DELETE FROM logs WHERE log_date &lt;= &apos;2009-11-01&apos; LIMIT 1000&quot;);</div><div class="line">if (mysql_affected_rows() == 0) &#123;</div><div class="line">    // 没得可删了，退出！</div><div class="line">    break;</div><div class="line">&#125;</div><div class="line">// 每次都要休息一会儿</div><div class="line">usleep(50000);</div></pre></td></tr></table></figure></p>
+<p>##14、当查询较慢的时候，可用Join来改写一下该查询来进行优化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select sql_no_cache * from guang_deal_outs where deal_id in (select id from guang_deals where id = 100017151) ;</div><div class="line"> Empty set (18.87 sec)</div><div class="line"></div><div class="line">mysql&gt; select sql_no_cache a.* from guang_deal_outs a inner join guang_deals b on a.deal_id = b.id where b.id = 100017151;</div><div class="line"> Empty set (0.01 sec)</div><div class="line"></div><div class="line">原因</div><div class="line">mysql&gt; desc select sql_no_cache * from guang_deal_outs where deal_id in (select id from guang_deals where id = 100017151) ;</div><div class="line">+----+--------------------+-----------------+-------+---------------+---------+---------+-------+----------+-------------+</div><div class="line">| id | select_type        | table           | type  | possible_keys | key     | key_len | ref   | rows     | Extra       |</div><div class="line">+----+--------------------+-----------------+-------+---------------+---------    +---------+-------+----------+-------------+</div><div class="line">|  1 | PRIMARY            | guang_deal_outs | ALL   | NULL          | NULL    |     NULL    | NULL  | 18633779 | Using where |</div><div class="line">|  2 | DEPENDENT SUBQUERY | guang_deals     | const | PRIMARY       | PRIMARY |     4       | const |        1 | Using index |</div><div class="line">+----+--------------------+-----------------+-------+---------------+---------    +---------+-------+----------+-------------+</div><div class="line">2 rows in set (0.04 sec)</div><div class="line"></div><div class="line">mysql&gt; desc select sql_no_cache a.* from guang_deal_outs a inner join guang_deals b on a.deal_id = b.id where b.id = 100017151;</div><div class="line">+----+-------------+-------+-------+----------------------    +----------------------+---------+-------+------+-------------+</div><div class="line">| id | select_type | table | type  | possible_keys        | key                      | key_len | ref   | rows | Extra       |</div><div class="line">+----+-------------+-------+-------+----------------------    +----------------------+---------+-------+------+-------------+</div><div class="line">|  1 | SIMPLE      | b     | const | PRIMARY              | PRIMARY                  | 4       | const |    1 | Using index |</div><div class="line">|  1 | SIMPLE      | a     | ref   | idx_guang_dlout_dlid |     idx_guang_dlout_dlid | 4       | const |    1 |             |</div><div class="line">+----+-------------+-------+-------+----------------------    +----------------------+---------+-------+------+-------------+</div><div class="line"> 2 rows in set (0.05 sec)</div></pre></td></tr></table></figure></p>
+<p>##15、子查询时用exists而不是用in<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">不推荐in</div><div class="line">select * from guang_deal_outs where deal_id in (select id from guang_deals where id = 100017151);</div><div class="line">推荐exists</div><div class="line">select * from guang_deal_outs where exists (select * from guang_deals where id = 100017151);</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://blog.pinbot.me/2016/11/09/mysql性能优化/" data-id="cj4jfdrit00118mwbcbgfqv6f" class="article-share-link" data-share="baidu" data-title="MySQL性能优化">分享到</a>
+      
+
+      
+        <a href="http://blog.pinbot.me/2016/11/09/mysql性能优化/#wy_thread" class="article-comment-link">评论</a>
+        <a class="cloud-tie-join-count" href="javascript:void(0);">
+  <span class="icon-comment"></span>
+  <span class="join-count">0</span>
+  <span class="join-text">人参与</span>
+</a>
+<!-- DOM元素 -->
+<!-- 根据站点情况，配置data-url或data-sourceId中的一个即可 -->
+<span
+  lang="join-count"
+  class="join-count"
+  data-url="http://blog.pinbot.me/2016/11/09/mysql性能优化/"
+  data-sourceId=""
+>0</span>
+<!-- JavaScript 配置 -->
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "79401510bd4c47b2adc27dd65da90a2e";
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2xpc3Rfam9pbl9zY3JpcHQuaHRtbA==", true);
+</script>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/运维/">运维</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/09/django自定义storage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          django自定义storage
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/09/Vue.js基础入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">Vue.js基础入门</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+  <section id="comments">
+    <div id="wy_thread">
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <noscript>Please enable JavaScript</noscript>
+    </div>
+  </section>
+</section>
+      
+      <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/UML/">UML</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/blog/">blog</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/django/">django</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/react/">react</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/大数据/">大数据</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/招聘/">招聘</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/搜索引擎/">搜索引擎</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/机器学习/">机器学习</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Django/">Django</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES6/">ES6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/">HTTP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kxrr/">Kxrr</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nodejs/">Nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NotImplemented/">NotImplemented</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ORM/">ORM</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Webpack/">Webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/apache-lucene/">apache lucene</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ascii/">ascii</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/django/">django</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/image/">image</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pypi/">pypi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyspark/">pyspark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/">react</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/setup-py/">setup.py</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sphinx/">sphinx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/str/">str</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/unicode-literals/">unicode_literals</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/并发/">并发</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/开始/">开始</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/技术/">技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/招聘/">招聘</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/搜索引擎/">搜索引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/经验总结/">经验总结</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/设计模式/">设计模式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/运维/">运维</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面向对象/">面向对象</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Django/" style="font-size: 12.5px;">Django</a> <a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Kxrr/" style="font-size: 10px;">Kxrr</a> <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/NotImplemented/" style="font-size: 10px;">NotImplemented</a> <a href="/tags/ORM/" style="font-size: 10px;">ORM</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Webpack/" style="font-size: 10px;">Webpack</a> <a href="/tags/apache-lucene/" style="font-size: 15px;">apache lucene</a> <a href="/tags/ascii/" style="font-size: 10px;">ascii</a> <a href="/tags/django/" style="font-size: 10px;">django</a> <a href="/tags/image/" style="font-size: 10px;">image</a> <a href="/tags/javascript/" style="font-size: 12.5px;">javascript</a> <a href="/tags/pypi/" style="font-size: 10px;">pypi</a> <a href="/tags/pyspark/" style="font-size: 10px;">pyspark</a> <a href="/tags/python/" style="font-size: 20px;">python</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/setup-py/" style="font-size: 10px;">setup.py</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/sphinx/" style="font-size: 10px;">sphinx</a> <a href="/tags/str/" style="font-size: 10px;">str</a> <a href="/tags/unicode-literals/" style="font-size: 10px;">unicode_literals</a> <a href="/tags/其他/" style="font-size: 10px;">其他</a> <a href="/tags/并发/" style="font-size: 10px;">并发</a> <a href="/tags/开始/" style="font-size: 10px;">开始</a> <a href="/tags/技术/" style="font-size: 10px;">技术</a> <a href="/tags/招聘/" style="font-size: 10px;">招聘</a> <a href="/tags/搜索引擎/" style="font-size: 15px;">搜索引擎</a> <a href="/tags/机器学习/" style="font-size: 15px;">机器学习</a> <a href="/tags/经验总结/" style="font-size: 10px;">经验总结</a> <a href="/tags/设计模式/" style="font-size: 10px;">设计模式</a> <a href="/tags/运维/" style="font-size: 17.5px;">运维</a> <a href="/tags/面向对象/" style="font-size: 10px;">面向对象</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">近期文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/25/用Sphinx快速制作文档/">用Sphinx快速制作文档</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/29/Python打包发布一条龙/">Python打包发布一条龙</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/18/Django入门进阶/">Django入门进阶</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/使用R并行方式对数值型数据离散化/">使用R并行方式对数值型数据离散化</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/09/向量的相似性度量/">向量的相似性度量</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">友情链接</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="" target="_blank">聘宝产品</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 聘宝研发<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      .
+      Theme by <a href="https://github.com/xiangming/landscape-plus" target="_blank">Landscape-plus</a>
+    </div>
+  </div>
+</footer>
+  </div>
+  <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+  <!-- totop start -->
+<div id="totop">
+<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+</div>
+
+<!-- totop end -->
+
+
+<script>
+  var cloudTieConfig = {
+    url: document.location.href,
+    sourceId: "",
+    productKey: "79401510bd4c47b2adc27dd65da90a2e",
+    target: "cloud-tie-wrapper"
+  };
+</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+
+
+<!-- 百度分享 start -->
+
+<div id="article-share-box" class="article-share-box">
+  <div id="bdshare" class="bdsharebuttonbox article-share-links">
+    <a class="article-share-weibo" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a class="article-share-weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a class="article-share-qq" data-cmd="sqq" title="分享到QQ"></a>
+    <a class="article-share-renren" data-cmd="renren" title="分享到人人网"></a>
+    <a class="article-share-more" data-cmd="more" title="更多"></a>
+  </div>
+</div>
+<script>
+  function SetShareData(cmd, config) {
+    if (shareDataTitle && shareDataUrl) {
+      config.bdText = shareDataTitle;
+      config.bdUrl = shareDataUrl;
+    }
+    return config;
+  }
+  window._bd_share_config={
+    "common":{onBeforeClick: SetShareData},
+    "share":{"bdCustomStyle":"/css/bdshare.css"}
+  };
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<!-- 百度分享 end -->
+
+<script src="//cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+<script src="/js/script.js"></script>
+
+</div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
