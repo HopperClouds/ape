@@ -1,10 +1,3 @@
-
-## 如何发布到blog.pinbot.me?
-```
-cd hopperclouds.github.io
-npm run deploy
-```
-
 ## 常见问题
 1. 替换hexo-livereload (TypeError: Cannot read property 'modified' of undefined at Router...)
 ```
@@ -23,17 +16,27 @@ npm install hexo-browsersync --save
 git clone git@github.com:HopperClouds/hopperclouds.github.io.git -b source --depth=1
 ```
 
-#### 安装hexo
+#### 安装
 ```
-npm install hexo -g
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+cnpm install hexo -g
+cnpm install
+git submodule update --init --recursive
+```
+
+#### 打开本地开发环境
+```
+npm run dev
 ```
 
 #### 添加文章
 复制markdown格式的文章到 **source/_posts** 目录下, 并进行add, commit, push。
 另外可以参考该目录下的`聘宝招聘Python实习生.md`文档在文档头部添加一些说明信息。
 
-#### 发布文章到线上
+#### 如何发布到`hopperclouds.github.io`?
 ```
+cd hopperclouds.github.io
+npm run generate
 npm run deploy
 ```
 

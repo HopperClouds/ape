@@ -1,7 +1,14 @@
 ---
 title: django自定义storage
-categories: django
-tag: [django, 技术]
+date: 2016-11-09 15:48:37
+# 类别
+categories:
+  - django
+# 标签
+tags:
+  - django
+  - 技术
+author: liudong
 ---
 最近遇到了这样的一个问题，由于某些原因，需要把静态文件放到cdn上，之前使用的是django默认的storage（FileSystemStorage）。于是这里需要自定义storage。
 第一次写storage，过程中遇到一些坑，记录下来。

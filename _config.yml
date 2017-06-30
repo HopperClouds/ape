@@ -12,7 +12,7 @@ timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://hopperclouds.github.io
+url: http://blog.pinbot.me
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -68,9 +68,18 @@ theme: landscape-plus
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type: git
+- type: git
   repo: git@github.com:HopperClouds/hopperclouds.github.io.git
   branch: master
+- type: rsync
+  host: blog.pinbot.me
+  user: deploy
+  root: /home/deploy/hopperclouds.github.io/public/
+  port: 22
+  delete: true
+  verbose: true
+  ignore_errors: false
+
 
 # Header
 menu:
@@ -101,7 +110,6 @@ widgets:
 # Links
 links:
   聘宝产品: https://www.pinbot.me
-  runforever github: https://github.com/runforever/
 
 # Miscellaneous
 # google_analytics:
@@ -109,4 +117,5 @@ links:
 
 # comment
 comment: true
-disqus_shortname: hopperclouds
+wy_shortname: pinbot
+

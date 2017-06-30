@@ -4,9 +4,6 @@ categories: 搜索引擎
 tags: [搜索引擎, apache lucene]
 ---
 
-
-<!--more-->
-
 ### **一、总论**
 
 根据<http://lucene.apache.org/java/docs/index.html>定义：
@@ -114,7 +111,7 @@ tags: [搜索引擎, apache lucene]
 
 文件二：My friend Jerry went to school to see his students but found them drunk which is not allowed.
 
- 
+
 
 第二步：将原文档传给分次组件(Tokenizer)。
 分词组件(Tokenizer)会做以下几件事情(此过程称为Tokenize)：
@@ -138,7 +135,7 @@ tags: [搜索引擎, apache lucene]
 
 “Students”，“allowed”，“go”，“their”，“friends”，“allowed”，“drink”，“beer”，“My”，“friend”，“Jerry”，“went”，“school”，“see”，“his”，“students”，“found”，“them”，“drunk”，“allowed”。
 
- 
+
 
 第三步：将得到的词元(Token)传给语言处理组件(Linguistic Processor)。
 语言处理组件(linguistic processor)主要是对得到的词元(Token)做一些同语言相关的处理。
@@ -151,7 +148,7 @@ tags: [搜索引擎, apache lucene]
 
 3. 将单词转变为词根形式，如“drove”到“drive”等。这种操作称为：lemmatization。
 
- 
+
 
 Stemming 和 lemmatization的异同：
 
@@ -170,7 +167,7 @@ Stemming和lemmatization不是互斥关系，是有交集的，有的词利用�
 
 “student”，“allow”，“go”，“their”，“friend”，“allow”，“drink”，“beer”，“my”，“friend”，“jerry”，“go”，“school”，“see”，“his”，“student”，“find”，“them”，“drink”，“allow”。
 
- 
+
 
 也正是因为有语言处理的步骤，才能使搜索drove，而drive也能被搜索出来。
 
@@ -292,7 +289,7 @@ Frequency 即词频率，表示此文件中包含了几个此词(Term)。
 
 因而判断公司与公司之间的关系，首先要找出哪些人对公司与公司之间的关系最重要，比如总经理，经理，首席技术官。其次要判断这些人之间的关系，不如两家公司的总经理曾经是同学，经理是老乡，首席技术官曾是创业伙伴。我们发现，两家公司无论总经理，经理，首席技术官，关系都很好，因而两家公司关系应该会很好。
 
- 
+
 
 分析了两种关系，下面看一下如何判断文档之间的关系了。
 
@@ -328,7 +325,7 @@ Document Frequency (df)：即有多少文档包含次Term。df 越大说明越�
 
 这仅仅只term weight计算公式的简单典型实现。实现全文检索系统的人会有自己的实现，Lucene就与此稍有不同。
 
- 
+
 
 2. 判断Term之间的关系从而得到文档相关性的过程，也即向量空间模型的算法(VSM)。
 我们把文档看作一系列词(Term)，每一个词(Term)都有一个权重(Term weight)，不同的词(Term)根据自己在文档中的权重来影响文档相关性的打分计算。

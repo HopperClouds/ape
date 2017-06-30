@@ -1,11 +1,13 @@
+---
 title: MySQL性能优化
-author: liudong
+date: 2016-11-09 15:48:37
 # 类别
 categories:
   - 技术
 # 标签
 tags:
   - 运维
+author: liudong
 ---
 作者：liudong at 2016-11-09 15:48:37
 ##1、为查询优化你的查询
@@ -152,7 +154,7 @@ mysql> desc select sql_no_cache a.* from guang_deal_outs a inner join guang_deal
 +----+-------------+-------+-------+----------------------    +----------------------+---------+-------+------+-------------+
 |  1 | SIMPLE      | b     | const | PRIMARY              | PRIMARY                  | 4       | const |    1 | Using index |
 |  1 | SIMPLE      | a     | ref   | idx_guang_dlout_dlid |     idx_guang_dlout_dlid | 4       | const |    1 |             |
-+----+-------------+-------+-------+----------------------    +----------------------+---------+-------+------+-------------+  
++----+-------------+-------+-------+----------------------    +----------------------+---------+-------+------+-------------+
  2 rows in set (0.05 sec)
 ```
 ##15、子查询时用exists而不是用in
