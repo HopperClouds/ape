@@ -29,10 +29,28 @@
         <a data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="article-share-link"><%= __('share') %></a>
       <% } %>
 
-      <% if (post.comments && (config.duoshuo_shortname || theme.duoshuo_shortname)){ %>
-        <a href="<%- post.permalink %>#ds-thread" class="article-comment-link"><%= __('comments') %></a>
-      <% } else if (post.comments && config.disqus_shortname){ %>
-        <a href="<%- post.permalink %>#disqus_thread" class="article-comment-link"><%= __('comments') %></a>
+      <% if (post.comments && config.wy_shortname){ %>
+        <a href="<%- post.permalink %>#wy_thread" class="article-comment-link"><%= __('comments') %></a>
+        <a class="cloud-tie-join-count" href="javascript:void(0);">
+  <span class="icon-comment"></span>
+  <span class="join-count">0</span>
+  <span class="join-text">人参与</span>
+</a>
+<!-- DOM元素 -->
+<!-- 根据站点情况，配置data-url或data-sourceId中的一个即可 -->
+<span
+  lang="join-count"
+  class="join-count"
+  data-url="<%- post.permalink %>"
+  data-sourceId=""
+>0</span>
+<!-- JavaScript 配置 -->
+<script>var yunModuleEnv = true;</script>
+<script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+<script>
+  var yunTieProductKey = "79401510bd4c47b2adc27dd65da90a2e";
+  Tie.loader("aHR0cHM6Ly9hcGkuZ2VudGllLjE2My5jb20vZXh0ZW5kL2xpc3Rfam9pbl9zY3JpcHQuaHRtbA==", true);
+</script>
       <% } %>
 
       <%- partial('post/tag') %>
@@ -43,27 +61,11 @@
   <% } %>
 </article>
 
-<% if (!index && post.comments && (config.duoshuo_shortname || theme.duoshuo_shortname)){ %>
+<% if (!index && post.comments && config.wy_shortname){ %>
   <section id="comments">
-    <div id="ds-thread" class="ds-thread" data-thread-key="<%= post.path %>" data-title="<%= post.title %>" data-url="<%= post.permalink %>"></div>
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"blogpinbot"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0]
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
-  </script>
-<!-- 多说公共JS代码 end -->
-  </section>
-<% } else if (!index && post.comments && config.disqus_shortname){ %>
-  <section id="comments">
-    <div id="disqus_thread">
-      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <div id="wy_thread">
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+      <noscript>Please enable JavaScript</noscript>
     </div>
   </section>
 <% } %>

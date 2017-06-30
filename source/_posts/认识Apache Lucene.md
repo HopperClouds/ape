@@ -1,4 +1,4 @@
-title: 认识Apache Lucene
+title: 认识 Apache Lucene
 date: 2016-08-31 18:00:04
 categories: 搜索引擎
 tags: [搜索引擎, apache lucene]
@@ -11,7 +11,7 @@ tags: [搜索引擎, apache lucene]
 
 <!--more-->
 
-## 熟悉Lucene
+## 熟悉 Lucene
 
 &emsp;&emsp;&emsp;&emsp;读者也许会产生疑问，为什么ElasticSearch 的创造者最终采用Lucene
 而不是自己开发相应功能的组件。我们也不知道为什么，因为我们不是决策者。
